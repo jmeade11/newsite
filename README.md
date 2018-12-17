@@ -24,4 +24,5 @@ These instructions will cover each of the steps below:
 # Create a Project Folder
 
 We need a project folder to hold all of our files.  It needs a structure that's a little different from the one we've been using so far.  It should look like this:
-![](assets/img/folder.png).
+
+![](assets/img/folders.png)
