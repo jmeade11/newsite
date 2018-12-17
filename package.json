@@ -1,0 +1,28 @@
+{
+  "name": "newsite",
+  "version": "1.0.0",
+  "description": "Just a simple website with sass",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmeade11/newsite.git"
+  },
+  "keywords": [
+    "sass",
+    "gulp",
+    "npm",
+    "babel"
+  ],
+  "author": "Jennifer Meade",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmeade11/newsite/issues"
+  },
+  "homepage": "https://github.com/jmeade11/newsite#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0"
+  }
+}
