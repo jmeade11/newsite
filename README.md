@@ -74,6 +74,6 @@ Now we're ready to install Gulp.js.  Gulp.js is a task runner.  Basically, it's 
 There are hundreds of plugins available for Gulp.js.  We're only going to use a couple for this project.  The process for installing couldn't be simpler though and you can add other plugins later as you need them following the same process.  
 
 1. For this project we need to install a bunch of plugins for Gulp.js.  We're going to do this all in one line, but the basic format for installing any plugin is to type `npm install plugin-name -D`.  Remember, the -D flag is going to save all of the information about which npm modules we're using on our project.  For this project, let's load all of them in one shot.  To do this type:
-`npm install gulp-sass autoprefixer gulp-notify gulp-postcss gulp-rename gulp-replace gulp-replace -D`
+`npm install gulp-sass autoprefixer cssnano gulp-postcss browser-sync -D`
 
 ### Create a Basic Gulp Workflow

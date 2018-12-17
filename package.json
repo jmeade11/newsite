@@ -23,6 +23,15 @@
   },
   "homepage": "https://github.com/jmeade11/newsite#readme",
   "devDependencies": {
-    "gulp": "^4.0.0"
+    "autoprefixer": "^9.4.3",
+    "browser-sync": "^2.26.3",
+    "cssnano": "^4.1.7",
+    "gulp": "^4.0.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4"
   }
 }

@@ -1,0 +1,49 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+$primary-color: deeppink;
+$secondary-color: adjust-hue($primary-color, 60);
+$complimentary-color: adjust-hue($primary-color, 90);
+$gradient: linear-gradient(150deg,$primary-color,$secondary-color);
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: $gradient;
+	perspective: 500px;
+}
+
+.circle {
+	width: 50vmin;
+	height: 50vmin;
+	transform-style: preserve-3d;
+	transform: rotateY(75deg) rotateX(165deg) rotateZ(0deg);
+	animation: rotate 5s infinite alternate;
+}
+
+.side {
+	width: 50vmin;
+	height: 50vmin;
+	border-radius: 50%;
+	position: absolute;
+	background: transparentize($complimentary-color,.85);
+	box-shadow: inset 0 0 2rem $complimentary-color;
+}
+
+@for $i from 1 through 6 {
+	$deg: 30 * $i;
+
+	.side:nth-child(#{$i}) {
+		transform: rotateX($deg + deg);
+	}
+}
+
+@keyframes rotate {
+	to {
+		transform: rotateX(170deg) rotateY(80deg) rotateZ(225deg);
+	}
+}
