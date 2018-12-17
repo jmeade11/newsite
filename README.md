@@ -77,3 +77,13 @@ There are hundreds of plugins available for Gulp.js.  We're only going to use a 
 `npm install gulp-sass autoprefixer cssnano gulp-postcss browser-sync -D`
 
 ### Create a Basic Gulp Workflow
+
+The workflows for Gulp.js are defined in the gulpfile.js that we created earlier.  These are written in Javascript.  Gulp.js adds a couple of special methods to make this easier, the most important of which is the .pipe() method.
+
+1. Copy the contents of the gulpfile.js from this site to your file.
+2. Save the file and then add some boilerplate to the index.html.  This file should point to the assets folder css, img, and js folders.  This will be the output destination of our actions in Gulp.js. In this case, the styles will be output to assets/css/styles.css.
+3. Add the scss file from this site to the src/sass folder and copy the contents of the index.html markup to the index.html in your project folder.
+4. Go to the Terminal and type `gulp watch`.
+5. Make a change the the styles.scss file and save it.  The gulp watch command we created will output a styles.css and reload the browser.
+
+SUCCESS :tada: 
