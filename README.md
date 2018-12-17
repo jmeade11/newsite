@@ -42,4 +42,19 @@ Go check out your work by opening the folder you created on the Desktop using Fi
 
 ### Initialize the Project for Git
 
-1. We're going to want to use git for our project, so to initialize the folder, we just need to make sure we're in our project folder
+1. We're going to want to use git for our project, so to initialize the folder, we just need to make sure we're in our project folder by typing `pwd`.  If you need to, cd into the correct folder with `cd ~/Desktop/exampleproj`.  Once there, type `git init`.  You should get back a message that reads: **Initialized empty Git repository in /Users/yourusername/Desktop/test/.git/**.
+2. That's really it, but since we're going to have a lot of special files in here for gulp to work with, we want to make sure to exclude them automatically when we upload stuff to GitHub.  We can do that with a special file called a **.gitignore** file.  This file just contains a list of files we don't want git to bother with tracking or syncing to our GitHub account, such as those weird .DS_Store files you may have seen show up in your GitHub account.  One easy way to create this file is to use our touch command again.  So, type `touch .gitignore` in the root of the project.
+3. We're going to add some stuff to this file by opening it in our Atom text editor by typing: `atom .gitignore`.
+4. Next, copy the .gitignore contents in this directory and paste it into your file that is open in Atom.  Save it and close it.  There are several ways to get good starting boilerplate.  I use a site maintained by the folks at Git called: https://www.gitignore.io/.  You can go there and manually generate the file contents, or you can use a special package like wget that allows you to use the command line to retrieve files over the Internet.
+
+Now, you've got your project set up to use git locally.  When you want to connect to GitHub, you can just open up your GitHub Desktop program and go to File > Add Local Repository..., find the folder and click Add Repository.  To add a corresponding GitHub remote repository, just commit your files and click the Publish button.  
+
+# Initialize the Project for Use with Node
+
+You already have Node.js installed. We did that to get the Browsersync server installed on your computer in one of our classes.  Node.js is pretty powerful and offers a lot more than just the option to run a web server.  Node.js *is* actually a server. Specifically, it's a server that runs Javascript (except without a browser). Many people have written open source projects that run on the Node.js server -- over 350,000 as a matter of fact.  This is great if we're creating a web project because we can take advantage of many of these node projects to improve our code; simplify our workflows; and even build sophisticated backends for our site.
+
+This is where npm comes into play.  The Node Package Manager, known as npm, is a tool that lets us easily install and manage any of those 350,000 node projects that people have built and shared with the rest of the world.  Again, we've already installed npm.  You can verify that by typing `npm -v` in the Terminal.  This command will tell you what version of npm is installed on your machine.
+
+To use Node.js and npm on our project, we need to have a package.json file. A package.json file is a manifest of your project that describes the packages and applications it depends on, information about its unique source control (like Git), and specific metadata like the project's name, description, and author.  You can create this file manually.  All it is is a JSON formatted document, but it's picky about the format and doing that is tedious, so we can use the npm init command to do it for us:
+
+1. Use `pwd` or just type `cd ~/Desktop/exampleproj` to make sure you're in the project folder first.  Once you've made sure you're in the root folder for your project, type `npm init`.
