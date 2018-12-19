@@ -1,3 +1,5 @@
+// Use the module loader to load the plugins
+// when required.
 const gulp          = require('gulp');
 const autoprefixer  = require('autoprefixer');
 const cssnano       = require('cssnano');
@@ -5,46 +7,51 @@ const postcss       = require('gulp-postcss');
 const sass          = require('gulp-sass');
 const paths = {
     styles: {
-        // By using styles/**/*.sass we're telling gulp to check all folders for any sass file
-        src: 'src/sass/*.scss',
-        // Compiled files will end up in whichever folder it's found in (partials are not compiled)
-        dest: 'assets/css'
+      // Using a ** in lieu of a folder name
+      // will check all folders within that
+      // directory recursively for matching files
+      src: 'src/sass/*.scss',
+      // Compiled files are output to whichever
+      // folder the source file is found in if
+      // the ** is used to iterate a file tree
+      dest: 'assets/css'
+    },
+    js: {
+      src: 'src/js/*.js',
+      dest: 'assets/js'
     }
-
-  // Easily add additional paths
-  // ,
-  // html: {
-  //  src: '...',
-  //  dest: '...'
-  // }
 };
-// Add a server so it can watch the files and run them directly in the browser
+// Add a server so we can launch the compiled files
+// directly in the browser
 const browserSync = require("browser-sync").create();
 
 function style() {
   return gulp
-    .src(paths.styles.src, { sourcemaps: true })
+    .src(paths.styles.src, {sourcemaps: true})
     .pipe(sass())
     .on("error", sass.logError)
     .pipe(postcss([autoprefixer(), cssnano()]))
-    .pipe(gulp.dest(paths.styles.dest))
-    // Add browsersync stream pipe after compilation
+    .pipe(gulp.dest(paths.styles.dest, {sourcemaps: true}))
+    // Add browsersync pipe after
+    // compilation to stream the results
     .pipe(browserSync.stream());
 }
 
-// A simple task to reload the page
+// Reload the server
 function reload() {
   browserSync.reload();
 }
 
 function watch() {
   browserSync.init({
-      // You can tell browserSync to use this directory and serve it as a mini-server
+      // browser-sync will launch the files
+      // at the root of the directory supplied
       server: {
           baseDir: "./"
       }
-      // If you are already serving your website locally using something like apache
-      // You can use the proxy setting to proxy that instead
+      // If you are already serving your website locally
+      // using something like Apache, use the proxy
+      // setting to proxy it instead such as:
       // proxy: "yourlocal.dev"
   });
 
