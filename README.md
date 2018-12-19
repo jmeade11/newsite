@@ -33,7 +33,8 @@ You can create this folder/file structure manually, or you can use the command l
 2. When a new Terminal window opens, you should be in your user home directory by default.  You can confirm this by typing `pwd`, which is the command used in Terminal to display the current working directory.  If you're not in your /Users/*yourusername* directory, just type `cd ~`.  The cd is the command to *change directory* and the tilde tells it to change to your home directory.
 3. We're going to put the project folder, which I'll name exampleproj, on the desktop, so type:
 ```bash
-mkdir -p ~/Desktop/exampleproj```
+mkdir -p ~/Desktop/exampleproj
+```
 The mkdir command means *make directory* and the part that follows is the path and foldername.  Remember, the ~ means start in your root.  We're already there so we could have skipped it, but we're practicing so we get used to using it. :smile: When you use the `-p` (this is known as a flag and in this case the p flag) with the mkdir command, it will create the entire folder path if it doesn't exist. If you had typed `mk dir -p ~/Desktop/mysites/newproj` for example, and there wasn't a mysites folder already on the desktop, it would have created both the mysites folder and the nested newproj folder.
 4. Next, type `cd !$`.  The !$ is another one of those special commands we can give to change directory.  It will take us into the folder we just created.
 5. From here we need to build our project folders.  We could do these one at a time by using our `mkdir` command, but we can make several folders all in one command by wrapping them in curly braces like this: `mkdir -p assets/{css,img,js} src/{js,sass}`.
