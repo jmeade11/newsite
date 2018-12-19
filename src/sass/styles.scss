@@ -3,7 +3,7 @@
 	margin: 0;
 }
 
-$primary-color: red;
+$primary-color: deeppink;
 $secondary-color: adjust-hue($primary-color, 60);
 $complimentary-color: adjust-hue($primary-color, 90);
 $gradient: linear-gradient(150deg,$primary-color,$secondary-color);

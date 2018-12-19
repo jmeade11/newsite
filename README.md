@@ -14,26 +14,30 @@ This readme file provides the steps for creating a basic website project that wi
 These instructions will cover each of the steps below:
 
 1. Create a new project folder with folders for source and "compiled" files.
-2. Initializes the project for git and create a basic .gitignore file.
-3. Initializes the project for use with node modules (creating package.json file).
-4. Install gulp for use with the project and save it to the dev-dependencies in the package.json.
+2. Initialize the project for git and create a basic .gitignore file.
+3. Initialize the project for use with node modules (creating package.json file).
+4. Install gulp for use with the project and save it to the devDependencies in the package.json file.
 5. Create a gulpfile.js file, where we'll add our gulp code.
-6. Install all of the gulp plugins described above and save them to the dev-dependencies in the package.json.
+6. Install all of the gulp plugins described above and save them to the devDependencies in the package.json.
 7. Create a basic gulp workflow for watching, compiling/transpiling, minifying and serving js and sass files.
 
 ### Create a Project Folder
 
-We need a project folder to hold all of our files.  It needs a structure that's a little different from the one we've been using so far.  It should look like this:
+We need a project folder to hold all of our files.  It needs a structure that's a little different from the one we've been using so far.  It will look like this when you've completed these steps:
 
 ![](assets/img/folders.png)
 
-You can create this folder/file structure manually, or you can use the command line to do it.  Lets open up Terminal on the MAC and do this the pro way:
+You can create this folder/file structure manually, or you can use the command line to do it.  Let's open up Terminal on the MAC and do this the pro way:
 
 1. Open Terminal (find it in the Applications > Utilities folder or use Spotlight to search for it).
-2. When a new Terminal window opens, you should be in your user home directory by default.  You can confirm this by typing `pwd`, which is the command to have Terminal report what is the current working directory.  If you're not in your /Users/*yourusername* directory, just type `cd ~`.  The cd is the command to *change directory* and the tilde tells it to change to your home directory.
-3. We're going to put the project folder, which I'll name exampleproj, on the desktop, so type `mkdir -p ~/Desktop/exampleproj`.  The mkdir command means *make directory* and the part that follows is the path and foldername.  Remember, the ~ means start in your root.  We're already there so we could have skipped it, but we're practicing so we get used to using it. :smile: When you use the `-p` (this is known as a flag and in this case the p flag) with the mkdir command, it will create the entire folder path if it doesn't exist. If you had typed `mk dir -p ~/Desktop/mysites/newproj` for example, and there wasn't a mysites folder already on the desktop, it would have created both the mysites folder and the nested newproj folder.
+2. When a new Terminal window opens, you should be in your user home directory by default.  You can confirm this by typing `pwd`, which is the command used in Terminal to display the current working directory.  If you're not in your /Users/*yourusername* directory, just type `cd ~`.  The cd is the command to *change directory* and the tilde tells it to change to your home directory.
+3. We're going to put the project folder, which I'll name exampleproj, on the desktop, so type:
+```bash
+mkdir -p ~/Desktop/exampleproj
+```
+The mkdir command means *make directory* and the part that follows is the path and foldername.  Remember, the ~ means start in your root.  We're already there so we could have skipped it, but we're practicing so we get used to using it. :smile: When you use the `-p` (this is known as a flag and in this case the p flag) with the mkdir command, it will create the entire folder path if it doesn't exist. If you had typed `mk dir -p ~/Desktop/mysites/newproj` for example, and there wasn't a mysites folder already on the desktop, it would have created both the mysites folder and the nested newproj folder.
 4. Next, type `cd !$`.  The !$ is another one of those special commands we can give to change directory.  It will take us into the folder we just created.
-5. From here we need to build our project folders.  We could do these one at a time by using our `mkdir` command, but we can make several folders all in one command by wrapping them in curly braces like this: `mkdir -p assets/{css,img,js} src/{js,sass}`.  
+5. From here we need to build our project folders.  We could do these one at a time by using our `mkdir` command, but we can make several folders all in one command by wrapping them in curly braces like this: `mkdir -p assets/{css,img,js} src/{js,sass}`.
 6. You can check your handy work so far with `ls` command. The ls, which stands for *list*, will list all of the files in the folder.  You should see that you have two top level folders named assets and src now in the project folder, and if you cd into the assets folder with `cd assets` and then type `ls`, you'll see the 3 folders we created there as well.  Use `cd ..` to go back one directory so you're in your project folder.  Remember, you can type `pwd` at any time to find out where you're at inside your directory structure.
 7. Next, we're going to create an index.html file in the root of our project.  Once you're back in the project folder, type `touch index.html`.  I know -- it's a creepy sounding command, but it just means *if this file doesn't exist, create it*.
 8. We're going to use touch once more now to create our sass file, so type `touch src/sass/styles.scss`.
@@ -47,7 +51,7 @@ Go check out your work by opening the folder you created on the Desktop using Fi
 3. We're going to add some stuff to this file by opening it in our Atom text editor by typing: `atom .gitignore`.
 4. Next, copy the .gitignore contents in this directory and paste it into your file that is open in Atom.  Save it and close it.  There are several ways to get good starting boilerplate.  I use a site maintained by the folks at Git called: https://www.gitignore.io/.  You can go there and manually generate the file contents, or you can use a special package like wget that allows you to use the command line to retrieve files over the Internet.
 
-Now, you've got your project set up to use git locally.  When you want to connect to GitHub, you can just open up your GitHub Desktop program and go to File > Add Local Repository..., find the folder and click Add Repository.  To add a corresponding GitHub remote repository, just commit your files and click the Publish button.  
+Now, you've got your project set up to use git locally.  When you want to connect to GitHub, you can just open up your GitHub Desktop program and go to File > Add Local Repository..., find the folder and click Add Repository.  To add a corresponding GitHub remote repository, just commit your files and click the Publish button.
 
 # Initialize the Project for Use with Node
 
@@ -65,13 +69,13 @@ To use Node.js and npm on our project, we need to have a package.json file. A pa
 
 Now we're ready to install Gulp.js.  Gulp.js is a task runner.  Basically, it's a tool that has lots of plugins that we can link into one or more workflows that we can kick off with the **gulp** command.  These workflows can do things like open up our sass files and compile them into css, then add vendor prefixes to all of the css that needs it, then write it to a new folder in our project as minified file.  Each of those tasks: compiling, prefixing and minifying is done with a Gulp plugin.
 
-1. To install Gulp.js locally for this project, we need to first install the Gulp CLI (command line interface).  We'll install this CLI globally on our machine so that we only need to do it once and can reuse it on any of our projects in the future.  The command to do this is `sudo npm install gulp-cli -g`. We're using sudo before this command because we're installing globally, that's what the -g flag says, and sudo means run this operation as the owner of this machine. It actually stands for *super user do*.  Because we used sudo, it will prompt us for the computer password that you use to login, just to be certain that you are authorized to install software on it.  
+1. To install Gulp.js locally for this project, we need to first install the Gulp CLI (command line interface).  We'll install this CLI globally on our machine so that we only need to do it once and can reuse it on any of our projects in the future.  The command to do this is `sudo npm install gulp-cli -g`. We're using sudo before this command because we're installing globally, that's what the -g flag says, and sudo means run this operation as the owner of this machine. It actually stands for *super user do*.  Because we used sudo, it will prompt us for the computer password that you use to login, just to be certain that you are authorized to install software on it.
 2. After the cli is installed, we need to install Gulp.js into our project, so first make sure you're in the project folder with `cd ~/Desktop/exampleproj`, then type `npm install gulp -D`.  The npm install command is just like the one we just used except this one is only installing a local copy for the project so we don't need sudo.  The -D flag tells npm to update our package.json file by adding information about Gulp.js to the devDependencies.  This means that we only need Gulp.js when we're developing our website or app, but not later when we are running this project in production.
-3. Next, we're going to use touch again to create a gulpfile.js, so type `touch gulpfile.js`.   
+3. Next, we're going to use touch again to create a gulpfile.js, so type `touch gulpfile.js`.
 
 ### Install the Gulp Plugins for This project
 
-There are hundreds of plugins available for Gulp.js.  We're only going to use a couple for this project.  The process for installing couldn't be simpler though and you can add other plugins later as you need them following the same process.  
+There are hundreds of plugins available for Gulp.js.  We're only going to use a couple for this project.  The process for installing couldn't be simpler though and you can add other plugins later as you need them following the same process.
 
 1. For this project we need to install a bunch of plugins for Gulp.js.  We're going to do this all in one line, but the basic format for installing any plugin is to type `npm install plugin-name -D`.  Remember, the -D flag is going to save all of the information about which npm modules we're using on our project.  For this project, let's load all of them in one shot.  To do this type:
 `npm install gulp-sass autoprefixer cssnano gulp-postcss browser-sync -D`
@@ -86,4 +90,4 @@ The workflows for Gulp.js are defined in the gulpfile.js that we created earlier
 4. Go to the Terminal and type `gulp watch`.
 5. Make a change the the styles.scss file and save it.  The gulp watch command we created will output a styles.css and reload the browser.
 
-SUCCESS :tada: 
+SUCCESS :tada:

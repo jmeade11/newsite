@@ -22,6 +22,7 @@
     "url": "https://github.com/jmeade11/newsite/issues"
   },
   "homepage": "https://github.com/jmeade11/newsite#readme",
+  "browserslist":["> 0.5%", "last 2 versions", "Firefox ESR", "not dead"],
   "devDependencies": {
     "autoprefixer": "^9.4.3",
     "browser-sync": "^2.26.3",

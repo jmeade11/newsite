@@ -23,14 +23,23 @@ const paths = {
 };
 // Add a server so we can launch the compiled files
 // directly in the browser
-const browserSync = require("browser-sync").create();
+const browserSync = require('browser-sync').create();
 
 function style() {
   return gulp
+    // Sets the source of the files and initializes
+    // the sourcemaps
     .src(paths.styles.src, {sourcemaps: true})
+    // First, compile the sass to css using the
+    // sass plugin and log any errors
     .pipe(sass())
-    .on("error", sass.logError)
+    .on('error', sass.logError)
+    // Next, use postcss to construct an AST from the
+    // compiled css so that we can use autoprefixer
+    // and cssnano (to minify)
     .pipe(postcss([autoprefixer(), cssnano()]))
+    // Sourcmaps need to be initialized on the
+    // source and destination
     .pipe(gulp.dest(paths.styles.dest, {sourcemaps: true}))
     // Add browsersync pipe after
     // compilation to stream the results
@@ -47,15 +56,15 @@ function watch() {
       // browser-sync will launch the files
       // at the root of the directory supplied
       server: {
-          baseDir: "./"
+          baseDir: './'
       }
       // If you are already serving your website locally
       // using something like Apache, use the proxy
       // setting to proxy it instead such as:
-      // proxy: "yourlocal.dev"
+      // proxy: 'yourlocal.dev'
   });
 
   gulp.watch(paths.styles.src, style);
-  gulp.watch("index.html", reload);
+  gulp.watch('index.html', reload);
 }
 exports.watch = watch;
